@@ -48,3 +48,34 @@ function getDateNumber(){
         tomorrowDate = Number(new Date().setTime(new Date().getTime() + 24*60*60*1000));//明天的时间戳
     return "今天时间戳为" + todayDate + ",明天时间戳为" + tomorrowDate;
 }
+
+/**
+ * 判断元素是否有某类
+ * @param {*} elements 
+ * @param {*} cName 
+ */
+function hasClass( elements,cName ){ 
+    return !!elements.className.match( new RegExp( "(\\s|^)" + cName + "(\\s|$)") ); 
+}; 
+
+/**
+ * 为DOM元素增加类
+ * @param {*} elements 
+ * @param {*} cName 
+ */
+function addClass( elements,cName ){ 
+    if( !hasClass( elements,cName ) ){ 
+        elements.className += " " + cName; 
+    } 
+}; 
+
+/**
+ * 为DOM元素移除类
+ * @param {*} elements 
+ * @param {*} cName 
+ */
+function removeClass( elements,cName ){ 
+    if( hasClass( elements,cName ) ){ 
+        elements.className = elements.className.replace( new RegExp( "(\\s|^)" + cName + "(\\s|$)" ), " " );
+    } 
+};
