@@ -79,3 +79,34 @@ function removeClass( elements,cName ){
         elements.className = elements.className.replace( new RegExp( "(\\s|^)" + cName + "(\\s|$)" ), " " );
     } 
 };
+
+/**
+ * 节流函数，通过控制每次事件执行的时间间隔控制短时间多次执行方法
+ * @param {function} handle 要执行的方法
+ * @param {Date} wait 每次事件执行的时间间隔
+ */
+function throttle(handle, wait){
+    var lastTime = 0;
+    return function(){
+        var nowTime = new Date().getTime();
+        if(nowTime - lastTime > wait){
+            handle.apply(this, arguments);
+            lastTime = nowTime;
+        }
+    }
+}
+
+/**
+ * 防抖函数，通过推迟每次事件执行的时间来减少不必要的查询
+ * @param {function} handle 要执行的方法
+ * @param {Date} delay 每次事件执行的推迟函数
+ */
+function debounce(handle, delay){
+    var timer;
+    return function(){
+        clearTimeout(timer);
+        timer = setTimeout(function(){
+            handle.apply(this, arguments);
+        }, delay)
+    }
+}
