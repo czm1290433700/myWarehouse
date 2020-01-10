@@ -65,7 +65,7 @@ function hasClass( elements,cName ){
  */
 function addClass( elements,cName ){ 
     if( !hasClass( elements,cName ) ){ 
-        elements.className += " " + cName; 
+        elements.className == "" ? elements.className += cName : elements.className += " " + cName; 
     } 
 }; 
 
