@@ -110,3 +110,55 @@ function debounce(handle, delay){
         }, delay)
     }
 }
+
+/**
+ * canvas 清除圆形区域
+ * @param {*} x 圆心x坐标
+ * @param {*} y 圆心y坐标
+ * @param {*} r 圆半径
+ * @param {*} cxt context
+ */
+function clearArcFun(x,y,r,cxt){ 
+    var stepClear=1;//别忘记这一步  
+    clearArc(x,y,r);
+    function clearArc(x,y,radius){
+       var calcWidth=radius-stepClear;  
+       var calcHeight=Math.sqrt(radius*radius-calcWidth*calcWidth);  
+ 
+       var posX=x-calcWidth;  
+       var posY=y-calcHeight;  
+                       
+       var widthX=2*calcWidth;  
+       var heightY=2*calcHeight;  
+                       
+       if(stepClear<=radius){  
+          cxt.clearRect(posX,posY,widthX,heightY);  
+          stepClear+=1;  
+          clearArc(x,y,radius);  
+       }  
+     }  
+}
+
+/**
+ * 验证字符串是否是中文
+ * @param {*} str
+ * @returns
+ */
+function isChinese(str){
+    var pattern = new RegExp("[\u4E00-\u9FA5]+");
+    return pattern.test(str)
+}
+
+export default{
+    arrToStringByComma,
+    transformDate,
+    topBack,
+    getDateNumber,
+    hasClass,
+    addClass,
+    removeClass,
+    throttle,
+    debounce,
+    clearArcFun,
+    isChinese
+}
